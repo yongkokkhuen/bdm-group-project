@@ -1,0 +1,13 @@
+# Transformation
+
+from pyspark.ml.feature import VectorAssembler
+
+inputCols = df.columns[1:]
+
+inputCols
+
+assembler = VectorAssembler(inputCols=inputCols, outputCol="features")
+
+df = assembler.transform(df)
+
+df.printSchema()

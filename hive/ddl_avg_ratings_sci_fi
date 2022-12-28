@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS avg_ratings_sci_fi
+STORED AS ORC
+AS
+SELECT userid, avg(rating) avgrating
+FROM ratings_with_genres
+WHERE genres LIKE '%Sci-Fi%'
+GROUP BY userid

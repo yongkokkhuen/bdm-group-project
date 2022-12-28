@@ -1,0 +1,63 @@
+CREATE TABLE IF NOT EXISTS avg_ratings
+STORED AS ORC
+AS
+SELECT 
+	users.userid, 
+	coalesce(action.avgrating, 0) action,
+	coalesce(adventure.avgrating, 0) adventure,
+	coalesce(animation.avgrating, 0) animation,
+	coalesce(children.avgrating, 0) children,
+	coalesce(comedy.avgrating, 0) comedy,
+	coalesce(crime.avgrating, 0) crime,
+	coalesce(documentary.avgrating, 0) documentary,
+	coalesce(drama.avgrating, 0) drama,
+	coalesce(fantasy.avgrating, 0) fantasy,
+	coalesce(filmnoir.avgrating, 0) filmnoir,
+	coalesce(horror.avgrating, 0) horror,
+	coalesce(musical.avgrating, 0) musical,
+	coalesce(mystery.avgrating, 0) mystery,
+	coalesce(others.avgrating, 0) others,
+	coalesce(romance.avgrating, 0) romance,
+	coalesce(scifi.avgrating, 0) scifi,
+	coalesce(thriller.avgrating, 0) thriller,
+	coalesce(war.avgrating, 0) war,
+	coalesce(western.avgrating, 0) western
+FROM users
+LEFT OUTER JOIN avg_ratings_action action
+ON (users.userid = action.userid)
+LEFT OUTER JOIN avg_ratings_adventure adventure
+on (users.userid = adventure.userid)
+LEFT OUTER JOIN avg_ratings_animation animation
+on (users.userid = animation.userid)
+LEFT OUTER JOIN avg_ratings_children children
+on (users.userid = children.userid)
+LEFT OUTER JOIN avg_ratings_comedy comedy
+on (users.userid = comedy.userid)
+LEFT OUTER JOIN avg_ratings_crime crime
+on (users.userid = crime.userid)
+LEFT OUTER JOIN avg_ratings_documentary documentary
+on (users.userid = documentary.userid)
+LEFT OUTER JOIN avg_ratings_drama drama
+on (users.userid = drama.userid)
+LEFT OUTER JOIN avg_ratings_fantasy fantasy
+on (users.userid = fantasy.userid)
+LEFT OUTER JOIN avg_ratings_film_noir filmnoir
+on (users.userid = filmnoir.userid)
+LEFT OUTER JOIN avg_ratings_horror horror
+on (users.userid = horror.userid)
+LEFT OUTER JOIN avg_ratings_musical musical
+on (users.userid = musical.userid)
+LEFT OUTER JOIN avg_ratings_mystery mystery
+on (users.userid = mystery.userid)
+LEFT OUTER JOIN avg_ratings_others others
+on (users.userid = others.userid)
+LEFT OUTER JOIN avg_ratings_romance romance
+on (users.userid = romance.userid)
+LEFT OUTER JOIN avg_ratings_sci_fi scifi
+on (users.userid = scifi.userid)
+LEFT OUTER JOIN avg_ratings_thriller thriller
+on (users.userid = thriller.userid)
+LEFT OUTER JOIN avg_ratings_war war
+on (users.userid = war.userid)
+LEFT OUTER JOIN avg_ratings_western western
+on (users.userid = western.userid)

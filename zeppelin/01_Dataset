@@ -1,0 +1,9 @@
+# Dataset
+
+print(spark)
+
+df = spark.sql("SELECT * FROM movielens.avg_ratings")
+
+df.head(1)[0]
+
+df.printSchema()

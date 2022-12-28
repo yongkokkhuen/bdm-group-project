@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS ratings_with_genres 
+STORED AS ORC 
+AS 
+SELECT r.userid, r.movieid, m.genres, r.rating 
+FROM ratings r 
+LEFT OUTER JOIN movies m 
+ON (r.movieid = m.movieid)

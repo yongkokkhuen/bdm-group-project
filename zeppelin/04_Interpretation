@@ -1,0 +1,20 @@
+import seaborn as sns
+
+viz_df = final_df.toPandas()
+
+viz_df.info()
+
+viz_df = viz_df.groupby("prediction").median()[inputCols].stack().reset_index()
+
+viz_df.columns = ["cluster", "genre", "median_rating"]
+
+viz_df
+
+for c in range(10):
+    c_df = viz_df[viz_df["cluster"] == c]
+
+    plt.figure(figsize=(10, 10))
+    plt.title("Cluster " + str(c))
+    sns.barplot(data=c_df, x="genre", y="median_rating")
+    plt.xticks(rotation=90)
+    plt.show()

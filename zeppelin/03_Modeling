@@ -1,0 +1,44 @@
+# Modeling
+
+import numpy as np
+
+k_values = list(np.arange(2, len(inputCols)))
+
+k_values
+
+from pyspark.ml.clustering import KMeans
+
+errors = []
+
+for k in k_values:
+    kmeans = KMeans(k=k)
+    kmeans.setSeed(1)
+
+    model = kmeans.fit(df)
+    wssse = model.computeCost(df)
+    errors.append(wssse)
+
+errors
+
+import matplotlib.pyplot as plt
+
+plt.plot(k_values, errors)
+plt.title("k vs wssse")
+plt.xlabel("k")
+plt.ylabel("wssse")
+plt.show()
+
+final_kmeans = KMeans(k=10)
+final_kmeans.setSeed(1)
+
+final_model = final_kmeans.fit(df)
+
+final_wssse = final_model.computeCost(df)
+
+final_wssse
+
+final_df = final_model.transform(df)
+
+final_df.printSchema()
+
+final_df.groupby("prediction").count().show()

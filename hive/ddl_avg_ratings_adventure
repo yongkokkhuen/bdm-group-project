@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS avg_ratings_adventure
+STORED AS ORC
+AS
+SELECT userid, avg(rating) avgrating
+FROM ratings_with_genres
+WHERE genres LIKE '%Adventure%'
+GROUP BY userid
